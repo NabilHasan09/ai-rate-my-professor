@@ -1,0 +1,124 @@
+{
+	"reviews": [
+		{
+			"professor": "Dr. Emily Turner",
+			"subject": "Mathematics",
+			"stars": 4,
+			"review": "Dr. Turner explains complex concepts clearly and is always willing to help."
+		},
+		{
+			"professor": "Prof. John Smith",
+			"subject": "Computer Science",
+			"stars": 5,
+			"review": "Prof. Smith is incredibly knowledgeable and makes the lectures engaging."
+		},
+		{
+			"professor": "Dr. Sophia Martinez",
+			"subject": "Physics",
+			"stars": 3,
+			"review": "Dr. Martinez knows the material well but can be a bit hard to follow sometimes."
+		},
+		{
+			"professor": "Prof. David Chen",
+			"subject": "Chemistry",
+			"stars": 2,
+			"review": "Prof. Chen's lectures are not well-organized, making it difficult to keep up."
+		},
+		{
+			"professor": "Dr. Anna Patel",
+			"subject": "Biology",
+			"stars": 4,
+			"review": "Dr. Patel is passionate about the subject, and her enthusiasm is contagious."
+		},
+		{
+			"professor": "Prof. James Williams",
+			"subject": "Economics",
+			"stars": 5,
+			"review": "Prof. Williams provides real-world examples that make the material easy to understand."
+		},
+		{
+			"professor": "Dr. Mia Hernandez",
+			"subject": "Sociology",
+			"stars": 3,
+			"review": "Dr. Hernandez is a good professor, but her grading can be a bit harsh."
+		},
+		{
+			"professor": "Prof. Michael Lee",
+			"subject": "Philosophy",
+			"stars": 4,
+			"review": "Prof. Lee encourages critical thinking and class discussions are always interesting."
+		},
+		{
+			"professor": "Dr. Olivia Clark",
+			"subject": "History",
+			"stars": 5,
+			"review": "Dr. Clark is an excellent lecturer who makes history come alive."
+		},
+		{
+			"professor": "Prof. Daniel Kim",
+			"subject": "Political Science",
+			"stars": 3,
+			"review": "Prof. Kim's classes are informative, but the workload is quite heavy."
+		},
+		{
+			"professor": "Dr. Grace Nguyen",
+			"subject": "English",
+			"stars": 4,
+			"review": "Dr. Nguyen is a thoughtful instructor who provides valuable feedback on essays."
+		},
+		{
+			"professor": "Prof. Benjamin Jones",
+			"subject": "Psychology",
+			"stars": 2,
+			"review": "Prof. Jones is knowledgeable, but the lectures can be monotonous."
+		},
+		{
+			"professor": "Dr. Lily Thompson",
+			"subject": "Art History",
+			"stars": 5,
+			"review": "Dr. Thompson's passion for art is evident, and she makes the subject very engaging."
+		},
+		{
+			"professor": "Prof. Christopher Davis",
+			"subject": "Engineering",
+			"stars": 3,
+			"review": "Prof. Davis is a competent professor, but sometimes struggles to explain difficult concepts."
+		},
+		{
+			"professor": "Dr. Ava Harris",
+			"subject": "Anthropology",
+			"stars": 4,
+			"review": "Dr. Harris is very approachable and makes sure everyone understands the material."
+		},
+		{
+			"professor": "Prof. Ethan Robinson",
+			"subject": "Environmental Science",
+			"stars": 5,
+			"review": "Prof. Robinson is incredibly inspiring and always available for help outside of class."
+		},
+		{
+			"professor": "Dr. Isabella White",
+			"subject": "Linguistics",
+			"stars": 3,
+			"review": "Dr. White is knowledgeable, but her lectures can be difficult to follow."
+		},
+		{
+			"professor": "Prof. Alexander Evans",
+			"subject": "Music",
+			"stars": 4,
+			"review": "Prof. Evans is passionate about music, and his classes are very enjoyable."
+		},
+		{
+			"professor": "Dr. Chloe Garcia",
+			"subject": "Theology",
+			"stars": 5,
+			"review": "Dr. Garcia's lectures are deep and thought-provoking, and she cares about her students."
+		},
+		{
+			"professor": "Prof. Samuel Hall",
+			"subject": "Statistics",
+			"stars": 2,
+			"review": "Prof. Hall's lectures are very technical and hard to follow for beginners."
+		}
+	]
+}
