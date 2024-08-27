@@ -2,6 +2,7 @@ import { Box, Typography, Button, Link } from '@mui/material'
 import ExampleOne from './components/ExampleOne'
 import ExampleTwo from './components/ExampleTwo'
 
+
 export default function Home() {
   return (
     <Box height="100vh" >
@@ -14,8 +15,10 @@ export default function Home() {
       <ExampleTwo/>
 
       <Box display="flex" justifyContent="center" alignItems="center" >
-        <Button variant="contained" component={Link} href="/professor-ai" sx={{ fontSize: "1.5em", backgroundColor: "rgba(191, 191, 191, 0.5)", border: "1px solid rgba(130, 130, 130)", transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",  '&:hover': { backgroundColor: "rgba(150,150,150)", transform: "scale(1.1)"} }}>
-          Talk To ProfessorAI...
+        <Button variant="contained" component={Link} href="/professor-ai" sx={{ backgroundColor: "rgba(191, 191, 191, 0.5)", border: "1px solid rgba(130, 130, 130)", transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",  '&:hover': { backgroundColor: "rgba(150,150,150)", transform: "scale(1.1)"} }}>
+          <Typography sx={{ fontFamily: "Inconsolata", fontSize: "1.5em", fontWeight: "bold" }}>
+            Talk To ProfessorAI...
+          </Typography>
         </Button>
       </Box>
 
