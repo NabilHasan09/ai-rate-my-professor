@@ -10,7 +10,7 @@ export default function ExampleOne(){
                 <AccountCircleIcon sx={{ color: "white", marginRight: "10px" }} />
                 <Box height="250px" width="200px" sx={{ backgroundColor: "#444444", borderRadius: "25px" }} >
                     <Box display="flex" height="100%" justifyContent="center" alignItems="center" p={3} >
-                        <Typography sx={{  color: "black", fontWeight: "bold" }}>
+                        <Typography sx={{  color: "black", fontWeight: "bold", fontFamily: "Inconsolata" }}>
                             You can ask ProfessorAI any questions about your professors in any school!
                         </Typography>
                     </Box>

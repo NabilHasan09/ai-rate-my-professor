@@ -1,7 +1,10 @@
 "use client"
-import { Box, Typography, TextField, Stack, Button } from "@mui/material";
+import { Box, TextField, Stack, Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { auth } from "@/firebase";
+import { onAuthStateChanged } from "firebase/auth";
 import AIBubble from "../components/AIBubble";
 import UserBubble from "../components/UserBubble";
 
@@ -9,6 +12,25 @@ export default function ProfessorAI() {
     const [prompt, setPrompt] = useState('')
     const [messages, setMessages] = useState([])
     const [isTyping, setIsTyping] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const router = useRouter();
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('user signed in');
+                router.push('/professor-ai');
+            }
+            else {
+                router.push('/login')
+            }
+            setLoading(false);
+        })
+    })
+
+    if (loading) {
+        return <div>Loading...</div>
+    }
 
     const handleSubmit = async () => {
         if (prompt.trim() === '' || isTyping) return;
@@ -35,21 +57,23 @@ export default function ProfessorAI() {
     }
 
     return(
-        <Box display="flex" justifyContent="center" width="100%" height="85vh" sx={{ marginTop: "100px" }}>
-            <Box width="1500px" height="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Stack flexGrow={1} display="flex" flexDirection="column" justifyContent="flex-end" >
-                    <AIBubble message={"Hi there! I am ProfessorAI, aimed at providing you information about professors at colleges and universities!"} />
-                    <Box height="5px" sx={{ marginBottom: "20px" }} />
-                    {messages.map((message, index) => (
-                        message.type === 'user' ? (
-                            <UserBubble key={index} message={message.text}/>
-                        ) :
-                        message.type === 'ai' ? (
-                            <AIBubble key={index} message={message.text}/>
-                        ) : null
-                    ))}
-                    {isTyping && <AIBubble message="..." />}
-                </Stack>
+        <Box display="flex" justifyContent="center" height="85vh" sx={{ marginTop: "100px" }}>
+            <Box height="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+                <Box minWidth="1700px" height="100%" display="flex" >
+                    <Stack flexGrow={1} display="flex" flexDirection="column" justifyContent="flex-end" >
+                        <AIBubble message={"Hi there! I am ProfessorAI, aimed at providing you information about professors at colleges and universities!"} />
+                        <Box height="5px" sx={{ marginBottom: "20px" }} />
+                        {messages.map((message, index) => (
+                            message.type === 'user' ? (
+                                <UserBubble key={index} message={message.text}/>
+                            ) :
+                            message.type === 'ai' ? (
+                                <AIBubble key={index} message={message.text}/>
+                            ) : null
+                        ))}
+                        {isTyping && <AIBubble message="..." />}
+                    </Stack>
+                </Box>
                 <Box display="flex" alignItems="center"  sx={{ marginTop: "30px" }}>
                     <TextField 
                         value={prompt}
@@ -57,7 +81,7 @@ export default function ProfessorAI() {
                         placeholder="Ask ProfessorAI..." 
                         onKeyDown={handleKeyDown} 
                         disabled={isTyping}
-                        sx={{ backgroundColor: "gray", borderRadius: "25px", width: "400px", alignSelf: "flex-end", marginBottom: "20px" }} 
+                        sx={{ backgroundColor: "gray", borderRadius: "25px", width: "400px", alignSelf: "flex-end", marginBottom: "20px", '& .MuiInputBase-input::placeholder': { fontFamily: "Inconsolata" } }} 
                     />
                     <Button onClick={handleSubmit} disabled={isTyping}>
                         <SendIcon sx={{ color: isTyping ? "darkgray" : "gray", border: `2px solid ${isTyping ? "darkgray" : "gray"}`, borderRadius: "25px", padding: "5px", fontSize: "40px", marginBottom: "20px", marginLeft: "10px" }} />

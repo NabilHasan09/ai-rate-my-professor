@@ -10,7 +10,7 @@ export default function ExampleTwo(){
                 <AccountCircleIcon sx={{ color: "white", marginRight: "10px" }} />
                 <Box height="250px" width="200px" sx={{ backgroundColor: "#222222", borderRadius: "25px" }} >
                     <Box display="flex" height="100%" justifyContent="center" alignItems="center" p={3} >
-                        <Typography sx={{  color: "white", fontWeight: "bold" }}>
+                        <Typography sx={{  color: "white", fontWeight: "bold", fontFamily: "Inconsolata" }}>
                             You can ask ProfessorAI some more interesting questions...
                         </Typography>
                     </Box>
