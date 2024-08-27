@@ -57,12 +57,11 @@ export default function ProfessorAI() {
     }
 
     return(
-        <Box display="flex" justifyContent="center" height="85vh" sx={{ marginTop: "100px" }}>
+        <Box display="flex" justifyContent="center" height="85vh" sx={{ marginTop: "150px" }}>
             <Box height="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Box minWidth="1700px" height="100%" display="flex" >
-                    <Stack flexGrow={1} display="flex" flexDirection="column" justifyContent="flex-end" >
+                <Box width={'80%'} height="100%" display="flex" flexDirection="column" overflowY={'auto'} border={'1px solid white'}>
+                    <Stack flexGrow={1} display="flex" flexDirection="column" justifyContent="flex-end">
                         <AIBubble message={"Hi there! I am ProfessorAI, aimed at providing you information about professors at colleges and universities!"} />
-                        <Box height="5px" sx={{ marginBottom: "20px" }} />
                         {messages.map((message, index) => (
                             message.type === 'user' ? (
                                 <UserBubble key={index} message={message.text}/>
@@ -74,14 +73,15 @@ export default function ProfessorAI() {
                         {isTyping && <AIBubble message="..." />}
                     </Stack>
                 </Box>
-                <Box display="flex" alignItems="center"  sx={{ marginTop: "30px" }}>
+                <Box display="flex" alignItems="center" sx={{ marginTop: "auto"}}>
                     <TextField 
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)} 
                         placeholder="Ask ProfessorAI..." 
                         onKeyDown={handleKeyDown} 
                         disabled={isTyping}
-                        sx={{ backgroundColor: "gray", borderRadius: "25px", width: "400px", alignSelf: "flex-end", marginBottom: "20px", '& .MuiInputBase-input::placeholder': { fontFamily: "Inconsolata" } }} 
+                        sx={{ backgroundColor: "gray", borderRadius: "25px", width: "600px", alignSelf: "flex-end", marginBottom: "20px", '& .MuiInputBase-input::placeholder': { fontFamily: "Inconsolata" } }}
+                        inputProps={{style: {fontFamily: "Inconsolata"}}}
                     />
                     <Button onClick={handleSubmit} disabled={isTyping}>
                         <SendIcon sx={{ color: isTyping ? "darkgray" : "gray", border: `2px solid ${isTyping ? "darkgray" : "gray"}`, borderRadius: "25px", padding: "5px", fontSize: "40px", marginBottom: "20px", marginLeft: "10px" }} />
