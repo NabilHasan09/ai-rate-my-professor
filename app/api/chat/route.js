@@ -10,7 +10,7 @@ export async function POST(req) {
         temperature: 1,
         topP: 0.95,
         topK: 64,
-        maxOutputTokens: 200,
+        maxOutputTokens: 512,
         responseMimeType: "text/plain",
     };
     
@@ -30,41 +30,39 @@ export async function POST(req) {
         });
 
         const embedding = (await embeddingModel.embedContent(userInput)).embedding
-        console.log(userInput)
 
         const results = await index.query({ 
-            topK: 3,
+            topK: 10,
             includeMetadata: true,
-            vector: embedding['values']
+            includeValues: true,
+            vector: embedding['values'],
         })
+
+        console.log(results)
 
         let resultString = 'Returned Results'
 
         results.matches.forEach((match) => {
             resultString+=`\n
-            Professor: ${match.id}
-            Subject: ${match.metadata.subject}
-            Stars: ${match.metadata.stars}
-            Review: ${match.metadata.review}
-            \n`
+            Professor: ${match.id}\n
+            Subject: ${match.metadata.subject}\n
+            Stars: ${match.metadata.stars}\n
+            Review: ${match.metadata.review}\n`
         })
-
-        console.log(resultString)
 
         const chatSession = chatModel.startChat({
             history: conversationHistory,
             generationConfig
         }); 
 
-        //const result = await chatSession.sendMessage(userInput);
-        //const refinedResponse = result.response.text() + resultString;
+        const result = await chatSession.sendMessage(resultString);
         
         conversationHistory.push({
             role: 'model',
-            parts: [{text: resultString }]
+            parts: [{text: result.response.text() }]
         });
 
-        return resultString;
+        return result.response.text();
     }
 
     const message = await run();
