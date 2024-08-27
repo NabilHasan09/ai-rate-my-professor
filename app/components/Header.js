@@ -1,23 +1,29 @@
-import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
-import Link from 'next/link'
+"use client";
+import { useState, useEffect } from "react";
+import { auth } from "@/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import HeaderLoggedIn from "./HeaderLoggedIn";
+import HeaderLoggedOut from "./HeaderLoggedOut";
 
 export default function Header() {
-    return(
-        <AppBar sx={{ backgroundColor: "black" }}>
-            <Toolbar>
-                <Button ml={5} component={Link} href="/" sx={{ fontWeight: "bolder", color: "gray", transition: "transform 0.2s ease-in-out", "&:hover": { transform: "scale(1.2)" } }}>
-                    RateMyProfessorAI
-                </Button>
 
-                <Box sx={{ marginLeft: "auto" }}>
-                    <Button variant="outlined" component={Link} href="/upload-professor" sx={{ color: "gray", borderColor: "gray", marginRight: "25px", transition: "transform 0.2s ease-in-out" ,"&:hover": { borderColor: "gray", transform: "scale(1.2)" } }} >
-                        Upload Your Professor
-                    </Button>
-                    <Button variant="outlined" sx={{ color: "gray", borderColor: "gray", transition: "transform 0.2s ease-in-out" ,"&:hover": { borderColor: "gray", transform: "scale(1.2)" } }} >
-                        Login
-                    </Button>
-                </Box>
-            </Toolbar>
-        </AppBar>
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {        
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                if (!user.displayName) {
+                    await new Promise((resolve) => setTimeout(resolve, 1000));
+                    await user.reload();
+                }
+                setUser(user);
+            } else {
+                setUser(null);
+            }
+        });
+    });
+
+    return (
+        <>{user ? <HeaderLoggedIn /> : <HeaderLoggedOut />}</>
     )
 }
