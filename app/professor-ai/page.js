@@ -73,7 +73,7 @@ export default function ProfessorAI() {
                         {isTyping && <AIBubble message="..." />}
                     </Stack>
                 </Box>
-                <Box display="flex" alignItems="center" sx={{ marginTop: "auto"}}>
+                <Box display="flex" alignItems="center" sx={{ marginTop: "30px"}}>
                     <TextField 
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)} 
