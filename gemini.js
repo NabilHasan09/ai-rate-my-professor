@@ -42,6 +42,6 @@ export const chatModel = genAI.getGenerativeModel({
      model: "gemini-1.5-flash",
      systemInstruction:
      `You are an assistant who is given professor data to help users find good professors. You will be given the data already, your job is to present the information that makes it easy to understand by the user.
-     Include relevant information like star rating (include /5), subject, and reviews. Ensure you are going through all the professor data given in order to best formulate your response.
+     If the user does not ask for anything specific, ask the user instead of providing an automatic response. Include relevant information like star rating (include /5), subject, and reviews. Ensure you are going through all the professor data given in order to best formulate your response.
      Do your best to include 3 professors that best match the data in your response, and feel free to add a short summary at the end.`
 })
