@@ -1,7 +1,7 @@
 "use client"
 import { Box, TextField, Stack, Button } from "@mui/material";
 import SendIcon from '@mui/icons-material/Send';
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { auth } from "@/firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -14,6 +14,7 @@ export default function ProfessorAI() {
     const [isTyping, setIsTyping] = useState(false)
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+    const messagesEndRef = useRef(null);
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -31,6 +32,14 @@ export default function ProfessorAI() {
     if (loading) {
         return <div>Loading...</div>
     }
+
+    useEffect(() => {
+        window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: 'smooth'
+        });
+    }, [messages]);
+
 
     const handleSubmit = async () => {
         if (prompt.trim() === '' || isTyping) return;
@@ -57,10 +66,12 @@ export default function ProfessorAI() {
     }
 
     return(
-        <Box display="flex" justifyContent="center" height="85vh" sx={{ marginTop: "150px" }}>
-            <Box height="100%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-                <Box width={'80%'} height="100%" display="flex" flexDirection="column" overflowY={'auto'} border={'1px solid white'}>
-                    <Stack flexGrow={1} display="flex" flexDirection="column" justifyContent="flex-end">
+        <Box display="flex" flexDirection="column" alignItems="center" minheight="100vh" sx={{ 
+            paddingTop: "150px",
+            paddingBottom: "100px" // Space for the fixed input box
+        }}>
+                <Box width={'80%'}>
+                    <Stack width="100%" display="flex" alignItems="center" justifyContent="flex-end" flexDirection="column">
                         <AIBubble message={"Hi there! I am ProfessorAI, aimed at providing you information about professors at colleges and universities!"} />
                         {messages.map((message, index) => (
                             message.type === 'user' ? (
@@ -71,9 +82,10 @@ export default function ProfessorAI() {
                             ) : null
                         ))}
                         {isTyping && <AIBubble message="..." />}
+                        <div ref={messagesEndRef} />
                     </Stack>
                 </Box>
-                <Box display="flex" alignItems="center" sx={{ marginTop: "30px"}}>
+                <Box position="fixed" bottom={10} display="flex" alignItems="center" sx={{ marginTop: "30px"}}>
                     <TextField 
                         value={prompt}
                         onChange={(e) => setPrompt(e.target.value)} 
@@ -86,8 +98,7 @@ export default function ProfessorAI() {
                     <Button onClick={handleSubmit} disabled={isTyping}>
                         <SendIcon sx={{ color: isTyping ? "darkgray" : "gray", border: `2px solid ${isTyping ? "darkgray" : "gray"}`, borderRadius: "25px", padding: "5px", fontSize: "40px", marginBottom: "20px", marginLeft: "10px" }} />
                     </Button>
-                </Box>
-            </Box>
+                </Box> 
         </Box>
     )
 }
