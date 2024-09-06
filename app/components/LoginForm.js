@@ -25,7 +25,7 @@ export default function LoginForm({ email, setEmail, password, setPassword, erro
                 </Box>
 
                 <Box width={'100%'} height={'12%'} sx={{bgcolor: '#e6e6e6', borderRadius: 2, position: 'absolute', bottom: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-                    <Typography>Don't have an account?</Typography>
+                    <Typography>Don&#39;t have an account?</Typography>
                     <Link href='/signup' underline="false" sx={{textDecoration: 'none', color: 'black', '&:hover': {color: '#555', textDecoration: 'underline'}}}>Sign Up</Link>
                 </Box>
 
