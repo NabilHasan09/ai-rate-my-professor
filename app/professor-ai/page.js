@@ -27,7 +27,7 @@ export default function ProfessorAI() {
             }
             setLoading(false);
         })
-    })
+    }, [router])
 
     if (loading) {
         return <div>Loading...</div>
