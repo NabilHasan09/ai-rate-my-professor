@@ -12,7 +12,6 @@ export default function ProfessorAI() {
     const [prompt, setPrompt] = useState('')
     const [messages, setMessages] = useState([])
     const [isTyping, setIsTyping] = useState(false)
-    const [loading, setLoading] = useState(false);
     const router = useRouter();
     const messagesEndRef = useRef(null);
 
@@ -28,10 +27,6 @@ export default function ProfessorAI() {
             setLoading(false);
         })
     }, [router])
-
-    if (loading) {
-        return <div>Loading...</div>
-    }
 
     useEffect(() => {
         window.scrollTo({
